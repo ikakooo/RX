@@ -22,12 +22,15 @@ object test{
         }
     suspend fun cpuTestCoroutines()= coroutineScope{
         var counter = 0
-        val numberOfCoroutines = 1_000_000
+        val numberOfCoroutines = 10_000_000
         val time = measureTimeMillis {
             for (i in 1..numberOfCoroutines) {
-                launch { counter += 1 }
+                launch { counter += 1
+
+                }
             }
         }
+        println("threadname: "+Thread.currentThread().name.toString())
         println("Created ${numberOfCoroutines} OfCoroutines $counter in ${time}ms.")
     }
     }

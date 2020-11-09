@@ -11,10 +11,11 @@ import java.util.concurrent.TimeUnit
 
 }
 
-suspend fun fetchDocs() {                             // Dispatchers.Main
+suspend fun fetchDocs() =withContext(Dispatchers.IO){                             // Dispatchers.Main
     val result = get("https://developer.android.com") // Dispatchers.IO for `get`
     println(result)
-    test.cpuTestCoroutines()// Dispatchers.Main
+    test.cpuTestCoroutines()
+    println(Thread.currentThread().name.toString())
 }
 
 suspend fun get(url: String) = withContext(Dispatchers.IO) { return@withContext url +"  dsfdsfsdfsdf" }
